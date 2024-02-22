@@ -58,9 +58,9 @@ The API Gateway serves as the single entry point for all client requests, managi
 
 The Config Server centralizes configuration management for all microservices, simplifying application maintenance and consistency across environments.
 
-### Discovery Server
+### Discovery Server  Eureka Server
 
-The Discovery Server provides service registration and discovery, enabling seamless service-to-service communication within the microservices ecosystem.
+In essence, the Eureka Server simplifies the management of microservices in a Spring Boot environment by supporting service discovery and registration, load balancing, and health checks. It’s a crucial component in modern microservices architectures.
 
 ### Student Microservice
 
