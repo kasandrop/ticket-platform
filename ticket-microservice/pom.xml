@@ -8,10 +8,10 @@
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
-    <artifactId>seller-macroservice</artifactId>
+    <artifactId>ticket-microservice</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>seller-macroservice</name>
+    <name>ticket-microservice</name>
     <properties>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
     </properties>

@@ -13,23 +13,11 @@
         <module>discovery</module>
         <module>config-server</module>
         <module>Authorisation</module>
-        <module>seller-macroservice</module>
-        <module>ticket-macroservice</module>
-        <module>buyer-macroservice</module>
+        <module>seller-microservice</module>
+        <module>ticket-microservice</module>
+        <module>buyer-microservice</module>
     </modules>
 
-
-
-    <!--<modules>
-        <module>user-service</module>
-        <module>venue-service</module>
-        <module>company-service</module>
-        <module>ticketing-service</module>
-        <module>feedback-service</module>
-        <module>authentication-service</module>
-
-
-    </modules>-->
     <properties>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
