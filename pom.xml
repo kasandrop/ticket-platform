@@ -12,26 +12,18 @@
         <module>gateway</module>
         <module>discovery</module>
         <module>config-server</module>
+        <module>Authorisation</module>
+        <module>seller-microservice</module>
+        <module>ticket-microservice</module>
+        <module>buyer-microservice</module>
     </modules>
 
-
-
-    <!--<modules>
-        <module>user-service</module>
-        <module>venue-service</module>
-        <module>company-service</module>
-        <module>ticketing-service</module>
-        <module>feedback-service</module>
-        <module>authentication-service</module>
-
-
-    </modules>-->
     <properties>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.maven.plugin.version>3.2.2</spring.boot.maven.plugin.version>
-        <spring.boot.dependencies.version>3.2.2</spring.boot.dependencies.version>
+        <spring.boot.maven.plugin.version>3.0.8</spring.boot.maven.plugin.version>
+        <spring.boot.dependencies.version>3.0.8</spring.boot.dependencies.version>
         <spring.cloud-version>2022.0.2</spring.cloud-version>
     </properties>
 
@@ -63,8 +55,18 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -74,16 +76,44 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.maven.plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
                 </plugin>
             </plugins>
 
 
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.0</version>
             <configuration>
                 <source>${maven.compiler.source}</source>
                 <target>${maven.compiler.target}</target>
