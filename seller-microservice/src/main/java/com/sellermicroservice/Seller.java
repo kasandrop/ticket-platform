@@ -26,6 +26,11 @@ public class Seller {
     @Column(name = "BusinessName")
     private String businessName;
 
+    @Column(name = "Email")
+    private String email;
+
+
+
 
 }
 
