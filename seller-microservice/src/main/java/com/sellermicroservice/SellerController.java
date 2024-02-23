@@ -3,6 +3,8 @@ package com.sellermicroservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class SellerController {
@@ -16,7 +18,7 @@ public class SellerController {
     }
 
     @GetMapping("/listTicket/{sellerId}")
-    public List<Ticket> listTicket(@PathVariable("sellerId") int sellerId) {
+    public List<Listing> listTicket(@PathVariable("sellerId") int sellerId) {
         return sellerService.listTicket(sellerId);
     }
 

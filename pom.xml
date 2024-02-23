@@ -16,6 +16,7 @@
         <module>seller-microservice</module>
         <module>ticket-microservice</module>
         <module>buyer-microservice</module>
+
     </modules>
 
     <properties>
