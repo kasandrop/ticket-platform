@@ -59,7 +59,7 @@ In essence, the Eureka Server simplifies the management of microservices in a Sp
    Email VARCHAR (100),
    Password VARCHAR (100),
    UserType VARCHAR (50)
-## 2. Seller Service
+## 2. Seller Service 
    o API: /registerSeller,/listTicket,/manageListing
    o Communicates with: User Service, Ticket Service, Notification Service
    o Database: Sellers (SellerID, UserID, BusinessName), Listings (ListingID, SellerID, TicketID,
