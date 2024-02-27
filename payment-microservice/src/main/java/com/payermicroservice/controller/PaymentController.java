@@ -19,6 +19,7 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
+    // Add payment method for user
     @PostMapping("/add")
     public ResponseEntity<PaymentDao> addPaymentMethod(
             @RequestParam() String payment_type,
@@ -30,7 +31,8 @@ public class PaymentController {
         return ResponseEntity.ok().body(paymentService.addPaymentDetails(new PaymentDao(payment_type, card_number, card_name, LocalDate.parse(expiry_date), cvv, user_id)));
     }
 
-    @GetMapping("")
+    // Get payment by user id
+    @GetMapping("/user")
     public ResponseEntity<PaymentDao> paymentDetails(@RequestParam() long user_id) {
         return ResponseEntity.ok().body(paymentService.getPaymentDetailsByUserId(user_id));
     }
