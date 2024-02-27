@@ -59,7 +59,7 @@ public class UserController {
 
     // Add payment
     @PostMapping("/payment/add")
-    public ResponseEntity<PaymentDao> addScreening(
+    public ResponseEntity<PaymentDao> addPaymentMethod(
             @RequestParam() String payment_type,
             @RequestParam() String card_number,
             @RequestParam() String card_name,
