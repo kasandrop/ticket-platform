@@ -129,4 +129,10 @@ public class CinemaController {
     public ResponseEntity<TicketDao> ticketDetails(@RequestParam() String ticket_id) {
         return ResponseEntity.ok().body(cinemaService.getTicketById(ticket_id));
     }
+
+    // Returns list of users tickets
+    @GetMapping("/tickets")
+    public ResponseEntity<List<TicketDao>> userTickets(@RequestParam() long user_id) {
+        return ResponseEntity.ok().body(cinemaService.getUserTickets(user_id));
+    }
 }
