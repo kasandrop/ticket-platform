@@ -1,14 +1,14 @@
-package com.buyermicroservice;
+package com.payermicroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class BuyerMicroserviceApplication {
+public class PaymentMicroserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BuyerMicroserviceApplication.class, args);
+		SpringApplication.run(PaymentMicroserviceApplication.class, args);
 	}
 
 }

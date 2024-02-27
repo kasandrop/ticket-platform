@@ -15,7 +15,7 @@
         <module>authorisation-service</module>
         <module>cinema-microservice</module>
         <module>ticket-microservice</module>
-        <module>buyer-microservice</module>
+        <module>payment-microservice</module>
         <module>movie-microservice</module>
     </modules>
 

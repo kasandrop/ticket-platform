@@ -1,4 +1,4 @@
-package com.moviemicroservice.model.dao;
+package com.payermicroservice.model.dao;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,18 +36,15 @@ public class PaymentDao {
     @Column
     private String cvv;
 
+    private long user_id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserDao userDao;
-
-    public PaymentDao(String payment_type, String card_number, String card_name, LocalDate expiry_date, String cvv, UserDao userDao) {
+    public PaymentDao(String payment_type, String card_number, String card_name, LocalDate expiry_date, String cvv, long user_id) {
         this.payment_type = payment_type;
         this.card_number = card_number;
         this.card_name = card_name;
         this.expiry_date = expiry_date;
         this.cvv = cvv;
-        this.userDao = userDao;
+        this.user_id = user_id;
     }
 
     public PaymentDao() {
@@ -98,11 +95,11 @@ public class PaymentDao {
         this.cvv = cvv;
     }
 
-    public UserDao getUserDao() {
-        return userDao;
+    public long getUser_id() {
+        return user_id;
     }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 }
