@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/cinema")
+@RequestMapping("/api/cinema")
 public class CinemaController {
 
     private final CinemaService cinemaService;
