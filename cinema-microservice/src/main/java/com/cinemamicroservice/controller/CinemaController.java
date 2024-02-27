@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/cinema")
+@RequestMapping("/api/cinema")
 public class CinemaController {
 
     private final CinemaService cinemaService;
@@ -128,5 +128,11 @@ public class CinemaController {
     @GetMapping("/ticket")
     public ResponseEntity<TicketDao> ticketDetails(@RequestParam() String ticket_id) {
         return ResponseEntity.ok().body(cinemaService.getTicketById(ticket_id));
+    }
+
+    // Returns list of users tickets
+    @GetMapping("/tickets")
+    public ResponseEntity<List<TicketDao>> userTickets(@RequestParam() long user_id) {
+        return ResponseEntity.ok().body(cinemaService.getUserTickets(user_id));
     }
 }
