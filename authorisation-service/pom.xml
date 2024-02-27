@@ -8,7 +8,7 @@
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
 	</parent>
-	<artifactId>Authorisation</artifactId>
+	<artifactId>authorisation-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Authorisation</name>
 	<description>Authorisation system for Cinema App</description>
