@@ -1,5 +1,9 @@
 package com.cinemamicroservice.service;
 
+import com.cinemamicroservice.model.Cinema;
+import com.cinemamicroservice.model.Screening;
+import com.cinemamicroservice.model.Seat;
+import com.cinemamicroservice.model.Ticket;
 import com.cinemamicroservice.model.dao.CinemaDao;
 import com.cinemamicroservice.model.dao.ScreeningDao;
 import com.cinemamicroservice.model.dao.SeatDao;
@@ -11,6 +15,7 @@ import com.cinemamicroservice.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,19 +30,44 @@ public class CinemaService {
     private final ScreeningRepository screeningRepository;
     private final CinemaRepository cinemaRepository;
 
-    public CinemaDao addCinema(CinemaDao cinemaDao) {
+    public CinemaDao addCinema(Cinema cinema) {
+        CinemaDao cinemaDao = new CinemaDao();
+        cinemaDao.setName(cinema.getName());
+        cinemaDao.setCompanyName(cinema.getCompany_name());
+        cinemaDao.setAddress(cinema.getAddress());
+        cinemaDao.setCity(cinema.getCity());
+        cinemaDao.setProvince(cinema.getProvince());
+        cinemaDao.setCountry(cinema.getCountry());
+        cinemaDao.setPostcode(cinema.getPostcode());
+        cinemaDao.setRegisteredDate(cinema.getRegistered_date());
+        cinemaDao.setScreens(cinema.getScreens());
         return cinemaRepository.save(cinemaDao);
     }
 
-    public ScreeningDao addScreening(ScreeningDao screeningDao) {
+    public ScreeningDao addScreening(Screening screening) {
+        ScreeningDao screeningDao = new ScreeningDao();
+        screeningDao.setPrice(screening.getPrice());
+        screeningDao.setScreening_date(LocalDateTime.parse(screening.getScreening_date()));
+        screeningDao.setScreen_number(screening.getScreen_number());
+        screeningDao.setCinemaDao(getCinemaById(screening.getCinema_id()));
+        screeningDao.setMovie_id(screening.getMovie_id());
         return screeningRepository.save(screeningDao);
     }
 
-    public SeatDao addSeat(SeatDao seatDao) {
+    public SeatDao addSeat(Seat seat) {
+        SeatDao seatDao = new SeatDao();
+        seatDao.setScreen_number(seat.getScreen_number());
+        seatDao.setRow(seat.getRow());
+        seatDao.setSeat_number(seat.getSeat_number());
+        seatDao.setCinemaDao(getCinemaById(seat.getCinema_id()));
         return seatRepository.save(seatDao);
     }
 
-    public TicketDao addTicket(TicketDao ticketDao) {
+    public TicketDao addTicket(Ticket ticket) {
+        TicketDao ticketDao = new TicketDao();
+        ticketDao.setScreeningDao(getScreeningById(ticket.getScreening_id()));
+        ticketDao.setSeatDao(getSeatById(ticket.getSeat_id()));
+        ticketDao.setUser_id(ticket.getUser_id());
         return ticketRepository.save(ticketDao);
     }
 
