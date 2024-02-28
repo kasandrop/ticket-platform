@@ -1,5 +1,6 @@
 package com.payermicroservice.controller;
 
+import com.payermicroservice.model.Payment;
 import com.payermicroservice.model.dao.PaymentDao;
 import com.payermicroservice.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,14 +22,8 @@ public class PaymentController {
 
     // Add payment method for user
     @PostMapping("/add")
-    public ResponseEntity<PaymentDao> addPaymentMethod(
-            @RequestParam() String payment_type,
-            @RequestParam() String card_number,
-            @RequestParam() String card_name,
-            @RequestParam() String expiry_date,
-            @RequestParam() String cvv,
-            @RequestParam() long user_id) {
-        return ResponseEntity.ok().body(paymentService.addPaymentDetails(new PaymentDao(payment_type, card_number, card_name, LocalDate.parse(expiry_date), cvv, user_id)));
+    public ResponseEntity<PaymentDao> addPaymentMethod(@RequestBody Payment payment) {
+        return ResponseEntity.ok().body(paymentService.addPaymentDetails(payment));
     }
 
     // Get payment by user id
