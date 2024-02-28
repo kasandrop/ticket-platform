@@ -47,113 +47,143 @@ The Config Server centralizes configuration management for all microservices, si
 
 In essence, the Eureka Server simplifies the management of microservices in a Spring Boot environment by supporting service discovery and registration, load balancing, and health checks. It’s a crucial component in modern microservices architectures.
 
-##Your personal and company data are protected in this chat
-Here are the method declarations for each service that the controller will use, along with the corresponding JPA repository interfaces and suggested controller APIs:
+### Endpoints
+
+| Endpoint                        | Params / Body                                                                                  | Method | Returns                                          |
+|---------------------------------|------------------------------------------------------------------------------------------------|--------|--------------------------------------------------|
+| /api/auth/role                  | { name }                                                                                       | GET    | Added role confirmation                          |
+| /api/auth/signin                | username, password                                                                             | GET    | Sign in confirmation                             |
+| /api/auth/signup                | { username, password, email, firstName, lastName, address, city, province, country, postcode } | POST   | Registration Confirmation                        |
+| /api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
+| /api/cinema                     | cinema_id                                                                                      | GET    | Cinema                                           |
+| /api/cinema/add                 | { name, company_name, address, city, province, country, postcode, (int) screens }              | POST   | Cinema Added                                     |
+| /api/cinema/booking             | { screening_id, seat_id, (long) user_id }                                                      | POST   | New Ticket purchased                             |
+| /api/cinema/movie               | (int) movie_id                                                                                 | GET    | List of cinemas showing the movie                |
+| /api/cinema/screening           | screening_id                                                                                   | GET    | Screening                                        |
+| /api/cinema/screening/add       | { (double) price, (LocalDateTime) screening_date, cinema_id, (int) movie_id }                  | POST   | Screening Added                                  |
+| /api/cinema/screening/available | screening_id                                                                                   | GET    | List of seats available for screening            |
+| /api/cinema/screening/movie     | cinema_id, (int) movie_id                                                                      | GET    | List of screenings for a movie and cinema        |
+| /api/cinema/screening/seat      | cinema_id, (int) screen_number                                                                 | GET    | List of all seats for a cinema and screen        |
+| /api/cinema/seat                | seat_id                                                                                        | GET    | Seat                                             |
+| /api/cinema/seat/add            | { (int) screen_number, (char) row, (int) seat_number, cinema_id }                              | POST   | Seat Added                                       |
+| /api/cinema/ticket              | ticket_id                                                                                      | GET    | Ticket                                           |
+| /api/cinema/ticket/add          | { screening_id, seat_id, (long) user_id }                                                      | POST   | Ticket Added                                     |
+| /api/cinema/ticket/user         | (long) user_id                                                                                 | GET    | List of users Tickets                            |
+| /api/movie                      | (int) movie_id                                                                                 | GET    | Movie                                            |
+| /api/movie/cast                 | (int) movie_id                                                                                 | GET    | List of cast members for movie                   |
+| /api/movie/release              | (int) movie_id                                                                                 | GET    | List of release dates for movie                  |
+| /api/movie/reviews              | (int) movie_id                                                                                 | GET    | List of reviews for movie                        |
+| /api/movie/search               | search                                                                                         | GET    | List of BaseMovie's that titles match the search |
+| /api/movie/trending/day         |                                                                                                | GET    | List of trending movies of the day               |
+| /api/movie/trending/week        |                                                                                                | GET    | List of trending movies of the week              |
+| /api/payment                    | (long) user_id                                                                                 | GET    | Users Payment                                    |
+| /api/payment/add                | { payment_type, card_number, card_name, (Date) expiry_date, cvv, (long) user_id }              | POST   | Payment Added                                    |
 
 
-
-'''
-
-Your personal and company data are protected in this chat
-Here are the method declarations for each service that the controller will use, along with the corresponding JPA repository interfaces and suggested controller APIs:
-
-1 User Service
-
-Method Declarations:
-public User register(User user);
-public User login(String email, String password);
-public void logout(User user);
-public User getProfile(int userId);
-JPA Repository Interface:
-public interface UserRepository extends JpaRepository<User, Integer> {}
-Controller APIs:
-POST /register
-POST /login
-POST /logout
-GET /profile/{userId}
-
-
-2 Seller Service
-
-Method Declarations:
-public Seller registerSeller(Seller seller);
-public List<Ticket> listTicket(int sellerId);
-public Listing manageListing(Listing listing);
-JPA Repository Interface:
-public interface SellerRepository extends JpaRepository<Seller, Integer> {}
-public interface ListingRepository extends JpaRepository<Listing, Integer> {}
-Controller APIs:
-POST /registerSeller
-GET /listTicket/{sellerId}
-POST /manageListing
-
-
-3  Buyer Service
-
-Method Declarations:
-public List<Ticket> searchTickets(String query);
-public Order purchaseTicket(Order order);
-public List<Order> manageOrders(int buyerId);
-JPA Repository Interface:
-public interface BuyerRepository extends JpaRepository<Buyer, Integer> {}
-public interface OrderRepository extends JpaRepository<Order, Integer> {}
-Controller APIs:
-GET /searchTickets?query={query}
-POST /purchaseTicket
-GET /manageOrders/{buyerId}
-
-
-4 Ticket Service
-
-Method Declarations:
-public Ticket getTicketDetails(int ticketId);
-public Ticket updateTicket(Ticket ticket);
-public void deleteTicket(int ticketId);
-JPA Repository Interface:
-public interface TicketRepository extends JpaRepository<Ticket, Integer> {}
-Controller APIs:
-GET /ticketDetails/{ticketId}
-PUT /updateTicket
-DELETE /deleteTicket/{ticketId}
-
-
-5  Payment Service
-
-Method Declarations:
-public Payment initiatePayment(Payment payment);
-public Payment confirmPayment(int paymentId);
-public Payment refund(int paymentId);
-JPA Repository Interface:
-public interface PaymentRepository extends JpaRepository<Payment, Integer> {}
-Controller APIs:
-POST /initiatePayment
-PUT /confirmPayment/{paymentId}
-PUT /refund/{paymentId}
-
-
-6  Notification Service
-
-Method Declarations:
-public Notification sendNotification(Notification notification);
-JPA Repository Interface:
-public interface NotificationRepository extends JpaRepository<Notification, Integer> {}
-Controller APIs:
-POST /sendNotification
-
-
-7 Review and Rating Service
-
-Method Declarations:
-public Review rate(Review review);
-public Review review(Review review);
-public List<Review> getReviews(int sellerId);
-JPA Repository Interface:
-public interface ReviewRepository extends JpaRepository<Review, Integer> {}
-Controller APIs:
-POST /rate
-POST /review
-GET /getReviews/{sellerId}
-'''
+## 1. User Service  which is now Authorisation Service
+   o API: /register,/login,/logout,/profile
+   o Communicates with: Seller Service, Buyer Service, Notification Service
+   o Database: Users (UserID, Name, Email, Password, UserType)
+   o SQL:
+   CREATE TABLE Users (
+   ) ;
+   UserID INT PRIMARY KEY,
+   Name VARCHAR (100),
+   Email VARCHAR (100),
+   Password VARCHAR (100),
+   UserType VARCHAR (50)
+## 2. Seller Service 
+   o API: /registerSeller,/listTicket,/manageListing
+   o Communicates with: User Service, Ticket Service, Notification Service
+   o Database: Sellers (SellerID, UserID, BusinessName), Listings (ListingID, SellerID, TicketID,
+   Price, Quantity)
+   o SQL:
+   CREATE TABLE Sellers (
+   SellerID INT PRIMARY KEY,
+   UserID INT,
+   BusinessName VARCHAR(100),
+   FOREIGN KEY (UserID) REFERENCES Users(UserID)
+   ) ;
+   CREATE TABLE Listings (
+   ListingID INT PRIMARY KEY,
+   SellerID INT,
+   TicketID INT,
+   Price DECIMAL (10, 2),
+   Quantity INT,
+   FOREIGN KEY (SellerID) REFERENCES Sellers(SellerID)
+   ) ;
+## 3. Buyer Service
+   o API: /searchTickets,/purchaseTicket,/manageOrders
+   o Communicates with: User Service, Ticket Service, Payment Service, Notification Service
+   o Database: Buyers (BuyerID, UserID), Orders (OrderID, BuyerID, ListingID, Quantity, Status)
+   o SQL:
+   CREATE TABLE Buyers (
+   BuyerID INT PRIMARY KEY,
+   UserID INT,
+   FOREIGN KEY (UserID) REFERENCES Users(UserID)
+   ) ;
+   CREATE TABLE Orders (
+   OrderID INT PRIMARY KEY,
+   BuyerID INT,
+   ListingID INT,
+   Quantity INT,
+   ) j
+   Status VARCHAR (50),
+   FOREIGN KEY (BuyerID) REFERENCES Buyers(BuyerID),
+   FOREIGN KEY (ListingID) REFERENCES Listings(ListingID)
+ ## 4. Ticket Service
+   o API: /ticketDetails,/updateTicket,/deleteTicket
+   o Communicates with: Seller Service, Buyer Service
+   o Database: Tickets (TicketID, EventName, EventDate, Venue)
+   o SQL:
+   CREATE TABLE Tickets (
+   TicketID INT PRIMARY KEY,
+   EventName VARCHAR (100),
+   EventDate DATE ,
+   Venue VARCHAR (100)
+   ) j
+## 5. Payment Service
+   o API: /initiatePayment,/confirmPayment,/refund
+   o Communicates with: Buyer Service
+   o Database: Payments (PaymentID, OrderID, Amount, Status)
+   o SQL:
+   CREATE TABLE Payments (
+   PaymentID INT PRIMARY KEY,
+   Order ID INT,
+   Amount DECIMAL (10, 2),
+   Status VARCHAR (50),
+   FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+   ) j
+## 6. Notification Service
+   o API: /sendNotification
+   o Communicates with: User Service, Seller Service, Buyer Service
+   o Database: Notifications (NotificationID, UserID, Message, Status)
+   o SQL:
+   CREATE TABLE Notifications (
+   NotificationID INT PRIMARY KEY,
+   UserID INT,
+   Message TEXT,
+   Status VARCHAR (50),
+   FOREIGN KEY (UserID) REFERENCES Users(UserID)
+   ) j
+## 7. Review and Rating Service
+   o API: /rate,/review, /getReviews
+   o Communicates with: Buyer Service, Seller Service
+   o Database: Reviews (ReviewID, BuyerID, SellerID, Rating, Comment)
+   o SQL:
+   CREATE TABLE Reviews (
+   ReviewID INT PRIMARY KEY,
+   Buyer ID INT,
+   ) j
+   Seller ID INT,
+   Rating INT,
+   Comment TEXT,
+   FOREIGN KEY (BuyerID) REFERENCES Buyers(BuyerID),
+   FOREIGN KEY (SellerID) REFERENCES Sellers(SellerID)
+   Each of these services should have its own database to ensure data consistency and service independence. The
+   services can communicate with each other using RESTful APis, gRPC, or messaging queues for asynchronous
+   communication. Remember to follow best practices for microservices architecture, such as loose coupling,
+   high cohesion, and database per service## Inter-Service Communication
 
 ### Using OpenFeign
 
