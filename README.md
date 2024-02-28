@@ -47,6 +47,38 @@ The Config Server centralizes configuration management for all microservices, si
 
 In essence, the Eureka Server simplifies the management of microservices in a Spring Boot environment by supporting service discovery and registration, load balancing, and health checks. It’s a crucial component in modern microservices architectures.
 
+### Endpoints
+
+| Endpoint                        | Params / Body                                                                                  | Method | Returns                                          |
+|---------------------------------|------------------------------------------------------------------------------------------------|--------|--------------------------------------------------|
+| /api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
+| /api/auth/signin                | username, password                                                                             | GET    | Sign in confirmation                             |
+| /api/auth/signup                | { username, password, email, firstName, lastName, address, city, province, country, postcode } | POST   | Registration Confirmation                        |
+| /api/cinema                     | cinema_id                                                                                      | GET    | Cinema                                           |
+| /api/cinema/add                 | { name, company_name, address, city, province, country, postcode, (int) screens }              | POST   | Cinema Added                                     |
+| /api/cinema/booking             | { screening_id, seat_id, (long) user_id }                                                      | POST   | New Ticket purchased                             |
+| /api/cinema/movie               | (int) movie_id                                                                                 | GET    | List of cinemas showing the movie                |
+| /api/cinema/screening           | screening_id                                                                                   | GET    | Screening                                        |
+| /api/cinema/screening/add       | { (double) price, (LocalDateTime) screening_date, cinema_id, (int) movie_id }                  | POST   | Screening Added                                  |
+| /api/cinema/screening/available | screening_id                                                                                   | GET    | List of seats available for screening            |
+| /api/cinema/screening/movie     | cinema_id, (int) movie_id                                                                      | GET    | List of screenings for a movie and cinema        |
+| /api/cinema/screening/seat      | cinema_id, (int) screen_number                                                                 | GET    | List of all seats for a cinema and screen        |
+| /api/cinema/seat                | seat_id                                                                                        | GET    | Seat                                             |
+| /api/cinema/seat/add            | { (int) screen_number, (char) row, (int) seat_number, cinema_id }                              | POST   | Seat Added                                       |
+| /api/cinema/ticket              | ticket_id                                                                                      | GET    | Ticket                                           |
+| /api/cinema/ticket/add          | { screening_id, seat_id, (long) user_id }                                                      | POST   | Ticket Added                                     |
+| /api/cinema/ticket/user         | (long) user_id                                                                                 | GET    | List of users Tickets                            |
+| /api/movie                      | (int) movie_id                                                                                 | GET    | Movie                                            |
+| /api/movie/cast                 | (int) movie_id                                                                                 | GET    | List of cast members for movie                   |
+| /api/movie/release              | (int) movie_id                                                                                 | GET    | List of release dates for movie                  |
+| /api/movie/reviews              | (int) movie_id                                                                                 | GET    | List of reviews for movie                        |
+| /api/movie/search               | search                                                                                         | GET    | List of BaseMovie's that titles match the search |
+| /api/movie/trending/day         |                                                                                                | GET    | List of trending movies of the day               |
+| /api/movie/trending/week        |                                                                                                | GET    | List of trending movies of the week              |
+| /api/payment                    | (long) user_id                                                                                 | GET    | Users Payment                                    |
+| /api/payment/add                | { payment_type, card_number, card_name, (Date) expiry_date, cvv, (long) user_id }              | POST   | Payment Added                                    |
+
+
 ## 1. User Service  which is now Authorisation Service
    o API: /register,/login,/logout,/profile
    o Communicates with: Seller Service, Buyer Service, Notification Service
