@@ -49,35 +49,35 @@ In essence, the Eureka Server simplifies the management of microservices in a Sp
 
 ### Endpoints
 
-| Endpoint                        | Params / Body                                                                                  | Method | Returns                                          |
-|---------------------------------|------------------------------------------------------------------------------------------------|--------|--------------------------------------------------|
-| /api/auth/role                  | { name }                                                                                       | GET    | Added role confirmation                          |
-| /api/auth/signin                | username, password                                                                             | GET    | Sign in confirmation                             |
-| /api/auth/signup                | { username, password, email, firstName, lastName, address, city, province, country, postcode } | POST   | Registration Confirmation                        |
-| /api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
-| /api/cinema                     | cinema_id                                                                                      | GET    | Cinema                                           |
-| /api/cinema/add                 | { name, company_name, address, city, province, country, postcode, (int) screens }              | POST   | Cinema Added                                     |
-| /api/cinema/booking             | { screening_id, seat_id, (long) user_id }                                                      | POST   | New Ticket purchased                             |
-| /api/cinema/movie               | (int) movie_id                                                                                 | GET    | List of cinemas showing the movie                |
-| /api/cinema/screening           | screening_id                                                                                   | GET    | Screening                                        |
-| /api/cinema/screening/add       | { (double) price, (LocalDateTime) screening_date, cinema_id, (int) movie_id }                  | POST   | Screening Added                                  |
-| /api/cinema/screening/available | screening_id                                                                                   | GET    | List of seats available for screening            |
-| /api/cinema/screening/movie     | cinema_id, (int) movie_id                                                                      | GET    | List of screenings for a movie and cinema        |
-| /api/cinema/screening/seat      | cinema_id, (int) screen_number                                                                 | GET    | List of all seats for a cinema and screen        |
-| /api/cinema/seat                | seat_id                                                                                        | GET    | Seat                                             |
-| /api/cinema/seat/add            | { (int) screen_number, (char) row, (int) seat_number, cinema_id }                              | POST   | Seat Added                                       |
-| /api/cinema/ticket              | ticket_id                                                                                      | GET    | Ticket                                           |
-| /api/cinema/ticket/add          | { screening_id, seat_id, (long) user_id }                                                      | POST   | Ticket Added                                     |
-| /api/cinema/ticket/user         | (long) user_id                                                                                 | GET    | List of users Tickets                            |
-| /api/movie                      | (int) movie_id                                                                                 | GET    | Movie                                            |
-| /api/movie/cast                 | (int) movie_id                                                                                 | GET    | List of cast members for movie                   |
-| /api/movie/release              | (int) movie_id                                                                                 | GET    | List of release dates for movie                  |
-| /api/movie/reviews              | (int) movie_id                                                                                 | GET    | List of reviews for movie                        |
-| /api/movie/search               | search                                                                                         | GET    | List of BaseMovie's that titles match the search |
-| /api/movie/trending/day         |                                                                                                | GET    | List of trending movies of the day               |
-| /api/movie/trending/week        |                                                                                                | GET    | List of trending movies of the week              |
-| /api/payment                    | (long) user_id                                                                                 | GET    | Users Payment                                    |
-| /api/payment/add                | { payment_type, card_number, card_name, (Date) expiry_date, cvv, (long) user_id }              | POST   | Payment Added                                    |
+| Endpoint                                             | Params / Body                                                                                  | Method | Returns                                          |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------|--------|--------------------------------------------------|
+| http://localhost:8070/api/auth/role                  | { name }                                                                                       | GET    | Added role confirmation                          |
+| http://localhost:8070/api/auth/signin                | username, password                                                                             | GET    | Sign in confirmation                             |
+| http://localhost:8070/api/auth/signup                | { username, password, email, firstName, lastName, address, city, province, country, postcode } | POST   | Registration Confirmation                        |
+| http://localhost:8070/api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
+| http://localhost:8060/api/cinema                     | cinema_id                                                                                      | GET    | Cinema                                           |
+| http://localhost:8060/api/cinema/add                 | { name, company_name, address, city, province, country, postcode, (int) screens }              | POST   | Cinema Added                                     |
+| http://localhost:8060/api/cinema/booking             | { screening_id, seat_id, (long) user_id }                                                      | POST   | New Ticket purchased                             |
+| http://localhost:8060/api/cinema/movie               | (int) movie_id                                                                                 | GET    | List of cinemas showing the movie                |
+| http://localhost:8060/api/cinema/screening           | screening_id                                                                                   | GET    | Screening                                        |
+| http://localhost:8060/api/cinema/screening/add       | { (double) price, (LocalDateTime) screening_date, cinema_id, (int) movie_id }                  | POST   | Screening Added                                  |
+| http://localhost:8060/api/cinema/screening/available | screening_id                                                                                   | GET    | List of seats available for screening            |
+| http://localhost:8060/api/cinema/screening/movie     | cinema_id, (int) movie_id                                                                      | GET    | List of screenings for a movie and cinema        |
+| http://localhost:8060/api/cinema/screening/seat      | cinema_id, (int) screen_number                                                                 | GET    | List of all seats for a cinema and screen        |
+| http://localhost:8060/api/cinema/seat                | seat_id                                                                                        | GET    | Seat                                             |
+| http://localhost:8060/api/cinema/seat/add            | { (int) screen_number, (char) row, (int) seat_number, cinema_id }                              | POST   | Seat Added                                       |
+| http://localhost:8060/api/cinema/ticket              | ticket_id                                                                                      | GET    | Ticket                                           |
+| http://localhost:8060/api/cinema/ticket/add          | { screening_id, seat_id, (long) user_id }                                                      | POST   | Ticket Added                                     |
+| http://localhost:8060/api/cinema/ticket/user         | (long) user_id                                                                                 | GET    | List of users Tickets                            |
+| http://localhost:8090/api/movie                      | (int) movie_id                                                                                 | GET    | Movie                                            |
+| http://localhost:8090/api/movie/cast                 | (int) movie_id                                                                                 | GET    | List of cast members for movie                   |
+| http://localhost:8090/api/movie/release              | (int) movie_id                                                                                 | GET    | List of release dates for movie                  |
+| http://localhost:8090/api/movie/reviews              | (int) movie_id                                                                                 | GET    | List of reviews for movie                        |
+| http://localhost:8090/api/movie/search               | search                                                                                         | GET    | List of BaseMovie's that titles match the search |
+| http://localhost:8090/api/movie/trending/day         |                                                                                                | GET    | List of trending movies of the day               |
+| http://localhost:8090/api/movie/trending/week        |                                                                                                | GET    | List of trending movies of the week              |
+| http://localhost:8050/api/payment                    | (long) user_id                                                                                 | GET    | Users Payment                                    |
+| http://localhost:8050/api/payment/add                | { payment_type, card_number, card_name, (Date) expiry_date, cvv, (long) user_id }              | POST   | Payment Added                                    |
 
 
 ## 1. User Service  which is now Authorisation Service
