@@ -51,9 +51,10 @@ In essence, the Eureka Server simplifies the management of microservices in a Sp
 
 | Endpoint                        | Params / Body                                                                                  | Method | Returns                                          |
 |---------------------------------|------------------------------------------------------------------------------------------------|--------|--------------------------------------------------|
-| /api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
+| /api/auth/role                  | { name }                                                                                       | GET    | Added role confirmation                          |
 | /api/auth/signin                | username, password                                                                             | GET    | Sign in confirmation                             |
 | /api/auth/signup                | { username, password, email, firstName, lastName, address, city, province, country, postcode } | POST   | Registration Confirmation                        |
+| /api/auth/user                  | (long) user_id                                                                                 | GET    | User                                             |
 | /api/cinema                     | cinema_id                                                                                      | GET    | Cinema                                           |
 | /api/cinema/add                 | { name, company_name, address, city, province, country, postcode, (int) screens }              | POST   | Cinema Added                                     |
 | /api/cinema/booking             | { screening_id, seat_id, (long) user_id }                                                      | POST   | New Ticket purchased                             |
