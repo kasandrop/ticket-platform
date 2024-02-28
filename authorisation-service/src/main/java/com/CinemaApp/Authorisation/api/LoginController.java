@@ -3,6 +3,7 @@ package com.CinemaApp.Authorisation.api;
 import com.CinemaApp.Authorisation.dao.RoleRepo;
 import com.CinemaApp.Authorisation.dao.UserRepo;
 import com.CinemaApp.Authorisation.dto.LoginDto;
+import com.CinemaApp.Authorisation.dto.RoleDto;
 import com.CinemaApp.Authorisation.dto.SignUpDto;
 import com.CinemaApp.Authorisation.model.Role;
 import com.CinemaApp.Authorisation.model.User;
@@ -72,7 +73,7 @@ public class LoginController {
         }
         userRepo.save(user);
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
 
@@ -80,5 +81,14 @@ public class LoginController {
     ResponseEntity<User> userDetails(@RequestParam() long user_id) {
         return ResponseEntity.ok().body(userRepo.findById(user_id).get());
     }
+
+    @PostMapping("/role/add")
+    ResponseEntity<String> addRole(@RequestBody() RoleDto roleDto) {
+        Role role = new Role();
+        role.setName(roleDto.getName());
+        roleRepo.save(role);
+        return ResponseEntity.ok().body(role.getName() + " Role Added");
+    }
+
 
 }
