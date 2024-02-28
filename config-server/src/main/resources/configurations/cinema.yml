@@ -10,7 +10,7 @@ server:
   port: 8060
 spring:
   application:
-    name: authorisation
+    name: cinema
   datasource:
     url: jdbc:h2:mem:ticketAppTest
     driver-class-name: org.h2.Driver

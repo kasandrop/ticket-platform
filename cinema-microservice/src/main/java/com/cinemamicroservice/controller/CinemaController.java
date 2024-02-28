@@ -131,7 +131,7 @@ public class CinemaController {
     }
 
     // Returns list of users tickets
-    @GetMapping("/tickets")
+    @GetMapping("/ticket/user")
     public ResponseEntity<List<TicketDao>> userTickets(@RequestParam() long user_id) {
         return ResponseEntity.ok().body(cinemaService.getUserTickets(user_id));
     }
