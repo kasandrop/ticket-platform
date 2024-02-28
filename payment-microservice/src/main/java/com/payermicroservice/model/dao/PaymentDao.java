@@ -36,15 +36,16 @@ public class PaymentDao {
     @Column
     private String cvv;
 
-    private long user_id;
+    @Column
+    private long userId;
 
-    public PaymentDao(String payment_type, String card_number, String card_name, LocalDate expiry_date, String cvv, long user_id) {
+    public PaymentDao(String payment_type, String card_number, String card_name, LocalDate expiry_date, String cvv, long userId) {
         this.payment_type = payment_type;
         this.card_number = card_number;
         this.card_name = card_name;
         this.expiry_date = expiry_date;
         this.cvv = cvv;
-        this.user_id = user_id;
+        this.userId = userId;
     }
 
     public PaymentDao() {
@@ -96,10 +97,10 @@ public class PaymentDao {
     }
 
     public long getUser_id() {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUser_id(long userId) {
+        this.userId = userId;
     }
 }

@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface PaymentRepository extends JpaRepository<PaymentDao, UUID> {
 
-    PaymentDao findByUser_id(long user_id);
+    PaymentDao findByUserId(long userId);
 
 }

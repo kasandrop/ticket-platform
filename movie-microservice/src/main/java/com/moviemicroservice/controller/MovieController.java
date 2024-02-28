@@ -1,6 +1,5 @@
 package com.moviemicroservice.controller;
 
-import com.moviemicroservice.service.CinemaService;
 import com.uwetrottmann.tmdb2.Tmdb;
 import com.uwetrottmann.tmdb2.entities.*;
 import com.uwetrottmann.tmdb2.enumerations.MediaType;
@@ -25,7 +24,6 @@ public class MovieController {
 
     private static final Tmdb tmdb = new Tmdb(API_KEY);
 
-    //private final CinemaService cinemaService;
     private MoviesService moviesService;
     private SearchService searchService;
     private TrendingService trendingService;

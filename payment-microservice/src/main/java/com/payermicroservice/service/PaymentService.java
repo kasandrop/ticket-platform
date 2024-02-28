@@ -16,7 +16,7 @@ public class PaymentService {
     }
 
     public PaymentDao getPaymentDetailsByUserId(long user_id) {
-        return paymentRepository.findByUser_id(user_id);
+        return paymentRepository.findByUserId(user_id);
     }
 
 }
