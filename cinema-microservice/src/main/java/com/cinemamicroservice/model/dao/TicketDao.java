@@ -31,13 +31,13 @@ public class TicketDao {
     @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private SeatDao seatDao;
 
-    private long user_id;
+    private long userId;
 
-    public TicketDao(LocalDateTime booking_date, ScreeningDao screeningDao, SeatDao seatDao, long user_id) {
+    public TicketDao(LocalDateTime booking_date, ScreeningDao screeningDao, SeatDao seatDao, long userId) {
         this.booking_date = booking_date;
         this.screeningDao = screeningDao;
         this.seatDao = seatDao;
-        this.user_id = user_id;
+        this.userId = userId;
     }
 
     public TicketDao() {
@@ -72,10 +72,10 @@ public class TicketDao {
     }
 
     public long getUser_id() {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUser_id(long userId) {
+        this.userId = userId;
     }
 }

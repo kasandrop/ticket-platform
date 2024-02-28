@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface TicketRepository extends JpaRepository<TicketDao, UUID> {
 
-    List<TicketDao> findAllByUser_id(long user_id);
+    List<TicketDao> findAllByUserId(long userId);
 
     List<TicketDao> findAllByScreeningDao(ScreeningDao screeningDao);
 
