@@ -8,7 +8,11 @@ import java.util.UUID;
 
 @Entity
 @Table(
-        name = "ticket"
+        name = "ticket",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"screening_id"}),
+            @UniqueConstraint(columnNames = {"seat_id"})
+        }
 )
 public class TicketDao {
     @Id

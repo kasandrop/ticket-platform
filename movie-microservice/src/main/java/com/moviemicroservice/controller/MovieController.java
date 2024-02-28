@@ -1,6 +1,5 @@
 package com.moviemicroservice.controller;
 
-import com.moviemicroservice.service.CinemaService;
 import com.uwetrottmann.tmdb2.Tmdb;
 import com.uwetrottmann.tmdb2.entities.*;
 import com.uwetrottmann.tmdb2.enumerations.MediaType;
@@ -18,14 +17,13 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/movie")
+@RequestMapping("/api/movie")
 public class MovieController {
 
     private static final String API_KEY = "4a4102dde36a1fc2260cdd84a4c2da28";
 
     private static final Tmdb tmdb = new Tmdb(API_KEY);
 
-    //private final CinemaService cinemaService;
     private MoviesService moviesService;
     private SearchService searchService;
     private TrendingService trendingService;

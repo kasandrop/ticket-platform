@@ -77,7 +77,7 @@ public class LoginController {
 
     }
 
-    @GetMapping("/getUser")
+    @GetMapping("/user")
     ResponseEntity<User> userDetails(@RequestParam() long user_id) {
         return ResponseEntity.ok().body(userRepo.findById(user_id).get());
     }
