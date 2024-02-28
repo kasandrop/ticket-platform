@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/movie")
+@RequestMapping("/api/movie")
 public class MovieController {
 
     private static final String API_KEY = "4a4102dde36a1fc2260cdd84a4c2da28";
