@@ -12,10 +12,9 @@
         <module>gateway</module>
         <module>discovery</module>
         <module>config-server</module>
-        <module>Authorisation</module>
-        <module>seller-microservice</module>
-        <module>ticket-microservice</module>
-        <module>buyer-microservice</module>
+        <module>authorisation-service</module>
+        <module>cinema-microservice</module>
+        <module>payment-microservice</module>
         <module>movie-microservice</module>
     </modules>
 
