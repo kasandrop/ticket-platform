@@ -42,7 +42,7 @@ public class CinemaService {
     }
 
     public List<TicketDao> getUserTickets(long user_id) {
-        return ticketRepository.findAllByUser_id(user_id);
+        return ticketRepository.findAllByUserId(user_id);
     }
 
     public CinemaDao getCinemaById(String cinema_id) {
