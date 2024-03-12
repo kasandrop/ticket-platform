@@ -1,50 +1,32 @@
-# PostgreSQL connection properties
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/ticketApp
-#    driver-class-name: org.postgresql.Driver
-#    username: username
-#    password: password
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#        show_sql: true
-#        format_sql: true
-#    hibernate:
-#      ddl-auto: create
-#    database: postgresql
-
-# create h2
-eureka:
-    instance:
-        hostname: localhost
-    client:
-        service-url:
-            defaultZone: http://localhost:8761/eureka
-
-
 server:
-    port: 8070
+    port: 0
 spring:
     application:
         name: authorisation
-    datasource:
-        url: jdbc:h2:mem:ticketAppTest
-        driver-class-name: org.h2.Driver
-        username: sa
-        password: password
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        hibernate:
+eureka:
+    instance:
+        prefer-ip-address: false
+        hostname: localhost
+    client:
+        serviceUrl:
+            register-with-eureka: true
+            fetch-registry: true
+            defaultZone: http://localhost:8761/eureka/
+
+jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
             ddl-auto: create
-    h2:
-        console:
-            enabled: true
-            path: /h2-console
-            settings:
-                trace: false
+
+h2:
+    console:
+        enabled: true
+        path: /h2-console
+        settings:
+            trace: false
 
 logging:
     level:
-        org.springframework.security: DEBUG
+        org.springframework.security: TRACE
+        web: DEBUG
+

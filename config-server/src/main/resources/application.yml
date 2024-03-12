@@ -6,8 +6,9 @@ spring:
     active: native
   application:
     name: config-server
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: classpath:/configurations
+
+
+logging:
+  level:
+    org.springframework.security: TRACE
+    web: DEBUG

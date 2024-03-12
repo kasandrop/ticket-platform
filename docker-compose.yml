@@ -1,46 +1,58 @@
+version: '3'
+
 services:
-  postgresql:
-    container_name: postgresql
-    image: postgres
-    environment:
-      POSTGRES_USER: alibou
-      POSTGRES_PASSWORD: alibou
-      PGDATA: /data/postgres
-    volumes:
-      - postgres:/data/postgres
-    ports:
-      - "5432:5432"
-    networks:
-      - postgres
-    restart: unless-stopped
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    networks:
-      - postgres
-    restart: unless-stopped
-  zipkin:
-    container_name: zipkin
-    image: openzipkin/zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - zipkin
 
+  config-server:
+    image: config-server/config-server:latest
+    ports:
+      - "8888:8888"
+
+  discovery:
+    image: discovery/discovery:latest
+    ports:
+      - "8761:8761"
+    depends_on:
+      config-server:
+        condition: service_healthy
+    links:
+    - config-server
+    healthcheck:
+       test: curl --fail http://localhost:8061/eureka/v2/apps || exit 1
+       interval: 4s
+       timeout: 2s
+       retries: 3
+    environment:
+       SPRING_PROFILES_ACTIVE: docker
+
+  gateway:
+    image: gateway/gateway:latest
+    ports:
+      - "8060:8060"
+    depends_on:
+      discovery:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    links:
+      - config-server
+      - discovery
+
+
+
+
+#  gateway-server:
+#    image: ${container.name}:${container.tag}
+#    ports:
+#      - "8989:8989"
+#    depends_on:
+#      - config-server
+#      - eureka
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:8989/health"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
 networks:
-  postgres:
-    driver: bridge
-  zipkin:
-    driver: bridge
-
-volumes:
-  postgres:
-  pgadmin:
+  eureka-network:

@@ -4,30 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.ticket.plarform</groupId>
-        <artifactId>Tickets-Platform</artifactId>
-        <version>1.0.0</version>
+        <artifactId>Ticket-Platform</artifactId>
+        <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
     <artifactId>seller-microservice</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>seller-microservice</name>
-    <properties>
-        <spring-cloud.version>2022.0.4</spring-cloud.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,6 +29,10 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -1,11 +1,20 @@
+server:
+  port: 0
+spring:
+  application:
+    name: seller-microservice
 eureka:
   instance:
+    prefer-ip-address: false
     hostname: localhost
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-spring:
-  datasource:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+datasource:
     url: jdbc:h2:mem:sellerAppTest
     driver-class-name: org.h2.Driver
     username: sa
@@ -20,9 +29,8 @@ spring:
         path: /h2-console
         settings:
           trace: false
-server:
-  port: 8010
+
 
 logging:
   level:
-    org.springframework.security: DEBUG
+    org.springframework.security: TRACE
