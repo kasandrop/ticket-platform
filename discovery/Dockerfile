@@ -14,4 +14,3 @@ EXPOSE 8061
 
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
 
-q
