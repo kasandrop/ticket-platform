@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>gateway</module>
-        <module>discovery</module>
+        <module>eureka-server</module>
         <module>config-server</module>
         <!--<module>authorisation</module>
         <module>seller-microservice</module>
@@ -71,6 +71,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-docker-compose</artifactId>
+
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
